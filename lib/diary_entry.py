@@ -5,18 +5,19 @@ class DiaryEntry:
         #   contents: string
         self.title = title
         self.contents = contents
-        pass
+        self.index = 0
+        
 
     def format(self):
         # Returns:
         #   A formatted diary entry, for example:
         #   "My Title: These are the contents"
-        pass
+        return f"{self.title}: {self.contents}"
 
     def count_words(self):
         # Returns:
         #   int: the number of words in the diary entry
-        return len(self.text.split())
+        return len(self.contents.split() + self.title.split())
 
     def reading_time(self, wpm):
         # Parameters:
@@ -25,7 +26,9 @@ class DiaryEntry:
         # Returns:
         #   int: an estimate of the reading time in minutes for the contents at
         #        the given wpm.
-        pass
+        word_count = self.count_words()
+        breakpoint()
+        return word_count / wpm 
 
     def reading_chunk(self, wpm, minutes):
         # Parameters
