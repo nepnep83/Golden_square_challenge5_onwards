@@ -50,9 +50,15 @@ def test_check_correct_time_est():
     result = diary.reading_time(100)
     assert result == 1
 
+
 """
 Check that estimated time is rounded correctly
 """
+def test_check_correct_time_est_when_rounding():
+    diary = DiaryEntry('hello', 'hello '*140)
+    result = diary.reading_time(100)
+    assert result == 2
+
 
 """
 check that the output is an int

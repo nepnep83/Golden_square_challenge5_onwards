@@ -27,8 +27,10 @@ class DiaryEntry:
         #   int: an estimate of the reading time in minutes for the contents at
         #        the given wpm.
         word_count = self.count_words()
-        breakpoint()
-        return word_count / wpm 
+        if word_count%wpm == 0:
+            return word_count / wpm 
+        else:
+            return int(word_count / wpm) + 1
 
     def reading_chunk(self, wpm, minutes):
         # Parameters
@@ -43,24 +45,4 @@ class DiaryEntry:
         # If called again, `reading_chunk` should return the next chunk,
         # skipping what has already been read, until the contents is fully read.
         # The next call after that should restart from the beginning.
-        outputtxt = []
-        if wpm <=0:
-            raise Exception('Invalid words per minute. Please try again.')
-        else:
-            if minutes == 0:
-                return 'You have no time to read anything.'
-            #if int(minutes/wpm) > len(self.words_to_read):
-            #    outputtxt = self.words_to_read
-            #    self.words_to_read = []
-            else:
-                    
-                for i in range(int(minutes/wpm)):
-                    outputtxt.append(self.words_to_read.pop(0))
-                    if len(self.words_to_read)== 0:
-                        break
-            if outputtxt[0] != list(self.title.split())[0]:
-                    outputtxt[0] = '...' + outputtxt[0]
-            if len(self.words_to_read) == 0:
-                self.words_to_read = list(self.format().split())
-                return ' '.join(outputtxt)
-            return ' '.join(outputtxt) + '...'
+        
